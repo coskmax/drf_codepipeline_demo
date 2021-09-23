@@ -1,0 +1,24 @@
+{
+    "executionRoleArn": "arn:aws:iam::418019425587:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+        {
+            "name": "code-pipeline-demo",
+            "image": "code-pipeline-demo",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 8000,
+                    "protocol": "tcp",
+                    "containerPort": 8000
+                }
+            ]
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "memory": "512",
+    "family": "drf-demo"
+}
