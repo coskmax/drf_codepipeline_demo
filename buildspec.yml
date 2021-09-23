@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - $(aws ecr get-login --no-include-email --region us-east-1)
+  build:
+    commands:
+      - docker build -t youtube:latest .
+      - docker tag docker tag demo-drf-app:latest 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com/demo-drf-app:latest
+  post_build:
+    commands:
+      - docker push <ECR_URL>
+      - printf '[{"name":"drf-app-demo-task","imageUri":"%s"}]' 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com/demo-drf-app:latest > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
