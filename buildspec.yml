@@ -6,11 +6,11 @@ phases:
       - $(aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com)
   build:
     commands:
-      - docker build -t youtube:latest .
+      - docker build -t demo-drf-app:latest .
       - docker tag docker tag demo-drf-app:latest 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com/demo-drf-app:latest
   post_build:
     commands:
-      - docker push <ECR_URL>
+      - docker push 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com/demo-drf-app
       - printf '[{"name":"drf-app-demo-task","imageUri":"%s"}]' 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com/demo-drf-app:latest > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
