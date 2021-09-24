@@ -10,7 +10,7 @@ phases:
       - docker tag demo-drf-app:latest 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com/demo-drf-app:latest
   post_build:
     commands:
-      - docker push 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com/demo-drf-app
+      - docker push 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com/demo-drf-app:latest
       - printf '[{"name":"demo-drf-app","imageUri":"%s"}]' 418019425587.dkr.ecr.ap-southeast-1.amazonaws.com/demo-drf-app:latest > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
